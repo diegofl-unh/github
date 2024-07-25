@@ -2,19 +2,26 @@ import React from "react";
 // import 'antd/dist/antd.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Registro from "./pages/Registro";
-import Inicio from "./pages/Inicio";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
 import { Toaster } from "react-hot-toast";
-
+import { useSelector } from "react-redux";
 
 function App() {
+  const { loading } = useSelector((state) => state.alerts);
   return (
     <BrowserRouter>
+      {loading && (
+        <div className="spinner-parent">
+          <div class="spinner-border" role="status" />
+        </div>
+      )}
+
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Registro" element={<Registro />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
