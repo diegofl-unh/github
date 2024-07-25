@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
 // funcion registro
 function Register() {
   const dispatch = useDispatch();
@@ -14,18 +15,21 @@ function Register() {
       dispatch(showLoading());
       const response = await axios.post("/api/user/register", values);
       dispatch(hideLoading());
+      console.log("Response:", response.data); // Log de respuesta
       if (response.data.success) {
         toast.success(response.data.message);
-        toast("Redireccionando a la pagina de inicio de sesión");
+        toast("Redireccionando a la página de inicio de sesión");
         navigate("/login");
       } else {
         toast.error(response.data.message);
       }
     } catch (error) {
       dispatch(hideLoading());
-      toast.error("Algo no salio bien");
+      console.error("Error:", error); // Log de error
+      toast.error("Algo no salió bien");
     }
   };
+  
   return (
     <div className="authentication">
       <div className="authentication-form card p-2">

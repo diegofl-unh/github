@@ -74,6 +74,9 @@ label {
     color: rgb(0, 217, 255) !important;
     /* text-decoration: underline !important; */
 }
+
+
+
 /* pagina de autenticacion */
 .authentication{
     display: flex;

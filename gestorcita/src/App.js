@@ -3,10 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import ApplyDoctor from "./pages/ApplyDoctor";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";  // Importa el componente ProtectedRoute
-import PublicRoute from "./components/PublicRoute";        // Asegúrate de que PublicRoute también esté importado
+import PublicRoute from "./components/PublicRoute";
+import Layout from "./components/Layout";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -29,6 +31,7 @@ function App() {
         />
         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
         <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+        <Route path="/apply-doctor" element={<PublicRoute><ApplyDoctor /></PublicRoute>} />
       </Routes>
     </BrowserRouter>
   );
